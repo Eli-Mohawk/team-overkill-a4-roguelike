@@ -18,12 +18,13 @@ namespace MohawkGame2D
             this.size = size;
         }
 
-        public void Update()
+        public void Update(Wall[] walls, Player player, Enemy[] enemies)
         {
+            Collision(walls, player, enemies);
             DrawWalls();
         }
 
-        void DrawWalls() // add art
+        void DrawWalls()
         {
             Draw.FillColor = Color.Blue;
             Draw.Rectangle(pos, size);
@@ -36,33 +37,33 @@ namespace MohawkGame2D
             {
                 Wall wall = walls[i];
 
+                float wallLeft = wall.pos.X;
+                float wallRight = wall.pos.X + wall.size.X;
+                float wallTop = wall.pos.Y;
+                float wallBottom = wall.pos.Y + wall.size.Y;
+
+                #region player collision
+                float playerLeft = player.pos.X;
+                float playerRight = player.pos.X + player.size.X;
+                float playerTop = player.pos.Y;
+                float playerBottom = player.pos.Y + player.size.Y;
+
+                bool isPlayerColliding = playerRight > wallLeft && playerLeft < wallRight && playerBottom > wallTop && playerTop < wallBottom;
+
+                if (isPlayerColliding)
+                {
+                    if (playerBottom >= wallTop && playerTop < wallTop) player.pos.Y = wallTop - player.size.Y;
+                    else if (playerTop <= wallBottom && playerBottom > wallBottom) player.pos.Y = wallBottom;
+                    else if (playerRight >= wallLeft && playerLeft < wallLeft) player.pos.X = wallLeft - player.size.X;
+                    else if (playerLeft <= wallRight && playerRight > wallRight) player.pos.X = wallRight;
+                }
+                #endregion
+
+                #region enemy collision
                 for (int j = 0; j < enemies.Length; j++)
                 {
-                    Enemy enemy = enemies[i];
+                    Enemy enemy = enemies[j];
 
-                    float wallLeft = wall.pos.X;
-                    float wallRight = wall.pos.X + wall.size.X;
-                    float wallTop = wall.pos.Y;
-                    float wallBottom = wall.pos.Y + wall.size.Y;
-
-                    #region player collision
-                    float playerLeft = player.pos.X;
-                    float playerRight = player.pos.X + player.size.X;
-                    float playerTop = player.pos.Y;
-                    float playerBottom = player.pos.Y + player.size.Y;
-
-                    bool isPlayerColliding = playerRight > wallLeft && playerLeft < wallRight && playerBottom > wallTop && playerTop < wallBottom;
-
-                    if (isPlayerColliding)
-                    {
-                        if (playerBottom >= wallTop && playerTop < wallTop) player.pos.Y = wallTop - player.size.Y;
-                        else if (playerTop <= wallBottom && playerBottom > wallBottom) player.pos.Y = wallBottom;
-                        else if (playerRight >= wallLeft && playerLeft < wallLeft) player.pos.X = wallLeft - player.size.X;
-                        else if (playerLeft <= wallRight && playerRight > wallRight) player.pos.X = wallRight;
-                    }
-                    #endregion
-
-                    #region enemy collision
                     float enemyLeft = enemy.pos.X;
                     float enemyRight = enemy.pos.X + enemy.size.X;
                     float enemyTop = enemy.pos.Y;
@@ -77,8 +78,8 @@ namespace MohawkGame2D
                         else if (enemyRight >= wallLeft && enemyLeft < wallLeft) player.pos.X = wallLeft - player.size.X;
                         else if (enemyLeft <= wallRight && enemyRight > wallRight) player.pos.X = wallRight;
                     }
-                    #endregion
                 }
+                #endregion
             }
         }
     }

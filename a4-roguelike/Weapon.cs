@@ -8,6 +8,22 @@ namespace MohawkGame2D
 {
     public class Weapon
     {
+        public Weapon()
+        {
 
+        }
+
+        public void Update()
+        {
+            
+        }
+    }
+
+    public class Pistol : Weapon
+    {
+        void DrawPistol()
+        {
+
+        }
     }
 }
