@@ -1,3 +1,6 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 ﻿using Raylib_cs;
 using System;
 using System.Collections.Generic;
@@ -8,6 +11,11 @@ using System.Threading.Tasks;
 
 namespace MohawkGame2D
 {
+    public class Buttons
+    {
+
+    }
+}
     public class Button
     {
         public String text;

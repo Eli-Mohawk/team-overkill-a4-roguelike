@@ -9,6 +9,7 @@ namespace MohawkGame2D
 {
     public class Level
     {
+
         
     }
 }
