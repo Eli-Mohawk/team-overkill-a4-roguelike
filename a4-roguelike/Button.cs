@@ -29,25 +29,18 @@ namespace MohawkGame2D
             this.size = size;
             this.color = color;
             this.textColor = textColor;
+            this.hoverColor = new Color(color.R - 30, color.G - 30, color.B - 30);
         }
 
         public void Update(Vector2 mousePos)
         {
-            DrawButton(mousePos);
-            IsClicked(mousePos);
+            bool isHovering = mousePos.X > pos.X && mousePos.X < pos.X + size.X && mousePos.Y > pos.Y && mousePos.Y < pos.Y + size.Y;
+            DrawButton(mousePos, isHovering);
+            IsClicked(mousePos, isHovering);
         }
 
-        void DrawButton(Vector2 mousePos)
+        void DrawButton(Vector2 mousePos, bool isHovering)
         {
-            bool isHovering = false;
-
-            hoverColor = new Color(color.R - 30, color.G - 30, color.B - 30);
-
-            if (mousePos.X > pos.X && mousePos.X < pos.X + size.X && mousePos.Y > pos.Y && mousePos.Y < pos.Y + size.Y)
-            {
-                isHovering = true;
-            }
-
             if (isHovering) Draw.FillColor = hoverColor;
             else Draw.FillColor = color;
 
@@ -63,15 +56,8 @@ namespace MohawkGame2D
             Text.Draw(text, new Vector2(textX, textY));
         }
 
-        public bool IsClicked(Vector2 mousePos)
+        public bool IsClicked(Vector2 mousePos, bool isHovering)
         {
-            bool isHovering = false;
-
-            if (mousePos.X > pos.X && mousePos.X < pos.X + size.X && mousePos.Y > pos.Y && mousePos.Y < pos.Y + size.Y)
-            {
-                isHovering = true;
-            }
-
             bool isMousePressed = Input.IsMouseButtonPressed(MouseInput.Left);
 
             return isHovering && isMousePressed;
