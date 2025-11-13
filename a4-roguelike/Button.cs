@@ -24,6 +24,7 @@ namespace MohawkGame2D
 
         Color hoverColor;
 
+        public bool isHovering;
         public Button(String text, int fontSize, Vector2 pos, Vector2 size, Color color, Color textColor)
         {
             this.text = text;
@@ -37,11 +38,12 @@ namespace MohawkGame2D
 
         public void Update(Vector2 mousePos)
         {
-            bool isHovering = mousePos.X > pos.X && mousePos.X < pos.X + size.X && mousePos.Y > pos.Y && mousePos.Y < pos.Y + size.Y;
+            isHovering = mousePos.X > pos.X && mousePos.X < pos.X + size.X && mousePos.Y > pos.Y && mousePos.Y < pos.Y + size.Y;
             DrawButton(mousePos, isHovering);
             IsClicked(mousePos, isHovering);
         }
 
+        //subject to change
         void DrawButton(Vector2 mousePos, bool isHovering)
         {
             if (isHovering) Draw.FillColor = hoverColor;
@@ -58,7 +60,7 @@ namespace MohawkGame2D
             Text.Color = textColor;
             Text.Draw(text, new Vector2(textX, textY));
         }
-
+        //
         public bool IsClicked(Vector2 mousePos, bool isHovering)
         {
             bool isMousePressed = Input.IsMouseButtonPressed(MouseInput.Left);
