@@ -14,7 +14,7 @@ namespace MohawkGame2D
     {
         public Vector2 pos = new Vector2(300, 200);
         public Vector2 size = new Vector2(10, 20);
-        float speed = 5;
+        public float speed = 5;
 
         public void Update()
         {
@@ -62,7 +62,7 @@ namespace MohawkGame2D
             bool isDown = Input.IsKeyboardKeyDown(KeyboardInput.S);
 
             bool isDodging = Input.IsKeyboardKeyPressed(KeyboardInput.Space);
-
+            
             if (isLeft) pos.X -= speed;
             if (isRight) pos.X += speed;
             if (isUp) pos.Y -= speed;
