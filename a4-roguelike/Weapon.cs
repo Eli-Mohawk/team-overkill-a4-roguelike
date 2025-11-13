@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MohawkGame2D
 {
-    public class Buttons
+    public class Weapon
     {
 
     }
