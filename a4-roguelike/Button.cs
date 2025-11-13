@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Raylib_cs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MohawkGame2D
 {
-    public class HitBox
+    public class Button
     {
         
     }
