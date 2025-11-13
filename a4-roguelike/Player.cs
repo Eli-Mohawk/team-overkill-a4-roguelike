@@ -14,7 +14,7 @@ namespace MohawkGame2D
     {
         public Vector2 pos = new Vector2(300, 200);
         public Vector2 size = new Vector2(10, 20);
-        float speed = 2;
+        float speed = 5;
 
         public void Update()
         {
@@ -40,17 +40,17 @@ namespace MohawkGame2D
             {
                 pos.X = 0;
             }
-            if (playerRight > 800)
+            if (playerRight > Window.Width)
             {
-                pos.X = 800 - size.X;
+                pos.X = Window.Width - size.X;
             }
             if (playerTop < 0)
             {
                 pos.Y = 0;
             }
-            if (playerBottom > 600)
+            if (playerBottom > Window.Height)
             {
-                pos.Y = 600 - size.Y;
+                pos.Y = Window.Height - size.Y;
             }
         }
 

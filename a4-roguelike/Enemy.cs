@@ -26,8 +26,7 @@ namespace MohawkGame2D
 
         void DrawEnemy()
         {
-            Draw.LineSize = 2;
-            Draw.LineColor = Color.Red;
+            Draw.FillColor = Color.Red;
             Draw.Rectangle(pos, size);
         }
     }
