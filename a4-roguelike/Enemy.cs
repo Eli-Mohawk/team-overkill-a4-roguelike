@@ -9,6 +9,7 @@ namespace MohawkGame2D
 {
     public class Enemy
     {
+
         public Vector2 pos;
         public Vector2 size;
         float speed;
