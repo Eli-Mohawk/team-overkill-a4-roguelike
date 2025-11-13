@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MohawkGame2D
 {
-    public class Levels
+    public class Level
     {
 
     }
