@@ -73,10 +73,10 @@ namespace MohawkGame2D
 
                     if (isEnemyColliding)
                     {
-                        if (enemyBottom >= wallTop && enemyTop < wallTop) player.pos.Y = wallTop - player.size.Y;
-                        else if (enemyTop <= wallBottom && enemyBottom > wallBottom) player.pos.Y = wallBottom;
-                        else if (enemyRight >= wallLeft && enemyLeft < wallLeft) player.pos.X = wallLeft - player.size.X;
-                        else if (enemyLeft <= wallRight && enemyRight > wallRight) player.pos.X = wallRight;
+                        if (enemyBottom >= wallTop && enemyTop < wallTop) enemy.pos.Y = wallTop - enemy.size.Y;
+                        else if (enemyTop <= wallBottom && enemyBottom > wallBottom) enemy.pos.Y = wallBottom;
+                        else if (enemyRight >= wallLeft && enemyLeft < wallLeft) enemy.pos.X = wallLeft - enemy.size.X;
+                        else if (enemyLeft <= wallRight && enemyRight > wallRight) enemy.pos.X = wallRight;
                     }
                 }
                 #endregion

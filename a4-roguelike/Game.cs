@@ -10,7 +10,8 @@ namespace MohawkGame2D
         public Player player = new Player();
         public Enemy[] enemies =
         {
-            new Enemy(new Vector2(500, 600), new Vector2(20, 30))
+            new Enemy(new Vector2(500, 600), new Vector2(20, 30)),
+            new Enemy(new Vector2(400, 200), new Vector2(20, 30)),
         };
         public Screen screen = new Screen();
 
@@ -47,7 +48,7 @@ namespace MohawkGame2D
 
             for (int j = 0; j < enemies.Length; j++)
             {
-                enemies[j].Update();
+                enemies[j].Update(player, enemies);
             }
 
             player.Update();

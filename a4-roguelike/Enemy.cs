@@ -12,7 +12,7 @@ namespace MohawkGame2D
 
         public Vector2 pos;
         public Vector2 size;
-        float speed;
+        Vector2 speed = new Vector2(2, 2);
 
         public Enemy(Vector2 pos, Vector2 size)
         {
@@ -20,8 +20,9 @@ namespace MohawkGame2D
             this.size = size;
         }
 
-        public void Update()
+        public void Update(Player player, Enemy[] enemies)
         {
+            PlayerTracking(player, enemies);
             DrawEnemy();
         }
 
@@ -29,6 +30,22 @@ namespace MohawkGame2D
         {
             Draw.FillColor = Color.Red;
             Draw.Rectangle(pos, size);
+        }
+
+        void PlayerTracking(Player player, Enemy[] enemies)
+        {
+            for (int i = 0; i < enemies.Length; i++)
+            {
+                Enemy enemy = enemies[i];
+
+                enemy.pos = pos;
+
+                Vector2 distance = enemy.pos - player.pos;
+
+                Vector2 angle = Vector2.Normalize(distance);
+
+                pos -= angle;
+            }
         }
     }
 }
