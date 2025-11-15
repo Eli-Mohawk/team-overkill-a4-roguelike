@@ -32,7 +32,6 @@ namespace MohawkGame2D
 
         void Collision(Wall[] walls, Player player, Enemy[] enemies)
         {
-
             for (int i = 0; i < walls.Length; i++)
             {
                 Wall wall = walls[i];
