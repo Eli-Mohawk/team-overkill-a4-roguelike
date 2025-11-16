@@ -16,11 +16,25 @@ namespace MohawkGame2D
         public Vector2 size = new Vector2(10, 20);
         public float speed = 5;
 
+        float maxHP = 100;
+        public float currentHP;
+        public bool isDead = false;
+
+        Vector2 barPos;
+        Vector2 maxBarSize;
+        Vector2 currentBarSize;
+
+        public void Setup()
+        {
+            currentHP = maxHP;
+        }
+
         public void Update()
         {
             Inputs();
             EdgeCollision();
             DrawPlayer();
+            HealthSystem();
         }
 
         void DrawPlayer()
@@ -72,6 +86,24 @@ namespace MohawkGame2D
             if (isDodging && isRight) pos.X += speed * 5;
             if (isDodging && isUp) pos.Y -= speed * 5;
             if (isDodging && isDown) pos.Y += speed * 5;
+        }
+
+        void HealthSystem()
+        {
+            barPos = new Vector2(13, 765);
+            maxBarSize = new Vector2(106, 25);
+            currentBarSize.X = currentHP;
+
+            Draw.LineSize = 3;
+            Draw.LineColor = Color.Black;
+            Draw.FillColor = Color.DarkGray;
+            Draw.Rectangle(barPos, maxBarSize);
+
+            Draw.LineSize = 0;
+            Draw.FillColor = Color.Red;
+            Draw.Rectangle(barPos.X + 3, barPos.Y + 3, currentBarSize.X, maxBarSize.Y - 6);
+
+            if (currentHP <= 0) isDead = true;
         }
     }
 }
