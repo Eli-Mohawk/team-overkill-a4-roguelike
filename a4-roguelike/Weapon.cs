@@ -14,7 +14,7 @@ namespace MohawkGame2D
         Vector2 mousePos;
         int weaponImage = 0;
 
-        Vector2 weaponSize = new Vector2(32, 32);
+        Vector2 weaponSize = new Vector2(16, 16);
         Vector2 weaponPos;
 
         bool mouseClick;

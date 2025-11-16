@@ -51,7 +51,7 @@ namespace MohawkGame2D
 
                 enemy.speed = new Vector2(enemy.speedNum, enemy.speedNum);
 
-                enemy.angle = Vector2.Normalize(enemy.pos - player.pos + player.size / 2);
+                enemy.angle = Vector2.Normalize(enemy.pos - player.pos);
                 enemy.pos -= enemy.angle * enemy.speed;
             }
         }

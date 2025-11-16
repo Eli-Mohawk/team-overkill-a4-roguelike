@@ -12,9 +12,9 @@ namespace MohawkGame2D
 
         public Enemy[] enemies =
         {
-            new Enemy(new Vector2(500, 600), new Vector2(20, 30), 0.5f),
-            new Enemy(new Vector2(200, 200), new Vector2(20, 30), 1),
-            new Enemy(new Vector2(100, 400), new Vector2(20, 30), 1.5f),
+            new Enemy(new Vector2(500, 600), new Vector2(16, 16), 0.5f),
+            new Enemy(new Vector2(200, 200), new Vector2(16, 16), 1),
+            new Enemy(new Vector2(100, 400), new Vector2(16, 16), 1.5f),
         };
         public Screen screen = new Screen();
 
@@ -47,10 +47,11 @@ namespace MohawkGame2D
             
             for (int i = 0; i < walls.Length; i++) walls[i].Update(walls, player, enemies);
 
-            for (int i = 0; i < enemies.Length; i++) enemies[i].Update(player, enemies);
-
             player.Update();
             weapon.Update(player);
+
+            for (int i = 0; i < enemies.Length; i++) enemies[i].Update(player, enemies);
+
         }
     }
 }
