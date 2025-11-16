@@ -16,7 +16,10 @@ namespace MohawkGame2D
         float speedNum;
         Vector2 angle;
         Vector2 speed;
-        Vector2 TEMP = new Vector2(30, 30);
+        bool melee = false;
+
+        float meleeAttack = 0;
+        float meleeCooldown = 2;
 
         public Enemy(Vector2 pos, Vector2 size, float speedNum)
         {
@@ -48,37 +51,38 @@ namespace MohawkGame2D
 
                 enemy.speed = new Vector2(enemy.speedNum, enemy.speedNum);
 
-                enemy.angle = Vector2.Normalize(enemy.pos - player.pos);
+                enemy.angle = Vector2.Normalize(enemy.pos - player.pos + player.size / 2);
                 enemy.pos -= enemy.angle * enemy.speed;
             }
         }
 
         void EnemyDistance(Player player, Enemy[] enemies)
         {
-            
-
             for (int i = 0; i < enemies.Length; i++)
             {
                 Enemy enemy = enemies[i];
 
-                float playerBoxLeft = player.pos.X - TEMP.X;
-                float playerBoxRight = player.pos.X + player.size.X + TEMP.X;
-                float playerBoxTop = player.pos.Y - TEMP.Y;
-                float playerBoxBottom = player.pos.Y + player.size.Y + TEMP.Y;
+                float playerLeft = player.pos.X;
+                float playerRight = player.pos.X + player.size.X;
+                float playerTop = player.pos.Y;
+                float playerBottom = player.pos.Y + player.size.Y;
 
                 float enemyLeft = enemy.pos.X;
                 float enemyRight = enemy.pos.X + enemy.size.X;
                 float enemyTop = enemy.pos.Y;
                 float enemyBottom = enemy.pos.Y + enemy.size.Y;
 
-                bool isColliding = playerBoxLeft < enemyRight && playerBoxRight > enemyLeft && playerBoxTop < enemyBottom && playerBoxBottom > enemyTop;
+                bool isColliding = playerLeft < enemyRight && playerRight > enemyLeft && playerTop < enemyBottom && playerBottom > enemyTop;
 
                 if (isColliding)
                 {
-                    if (playerBoxLeft < enemyRight) enemy.pos.X = playerBoxLeft - enemy.size.X;
-                    else if (playerBoxRight > enemyLeft) enemy.pos.X = playerBoxRight;
-                    else if (playerBoxTop < enemyBottom) enemy.pos.Y = playerBoxTop - enemy.size.Y;
-                    else if (playerBoxBottom > enemyTop) enemy.pos.Y = playerBoxBottom;
+                    meleeAttack += Time.DeltaTime;
+
+                    if (meleeAttack >= meleeCooldown)
+                    {
+                        meleeAttack = 0;
+                        player.currentHP -= 1;
+                    }
                 }
             }
         }

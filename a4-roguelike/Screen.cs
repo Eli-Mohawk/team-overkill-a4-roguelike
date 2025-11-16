@@ -52,6 +52,7 @@ namespace MohawkGame2D
             if (currentScreen == 0) TitleScreen(mousePos, titleButtons);
             if (currentScreen == 1) RuleScreen(mousePos, ruleButtons);
             if (currentScreen == 2) SettingsScreen(mousePos, settingsButtons);
+            if (currentScreen == 5) GameOverScreen();
         }
 
         void TitleScreen(Vector2 mousePos, Button[] titleButtons)
@@ -106,6 +107,12 @@ namespace MohawkGame2D
             Text.Draw("SETTINGS SCREEN", new Vector2(100, 25));
 
             if (settingsButtons[0].IsClicked(mousePos, settingsButtons[0].isHovering)) currentScreen = 0;
+        }
+
+        void GameOverScreen()
+        {
+            Text.Size = 100;
+            Text.Draw("EAT GRENADES LOSER!", new Vector2(10, 10));
         }
     }
 }
