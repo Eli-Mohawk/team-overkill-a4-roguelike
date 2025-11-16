@@ -8,6 +8,8 @@ namespace MohawkGame2D
         Cheats cheats = new Cheats();
 
         public Player player = new Player();
+        Weapon weapon = new Weapon(0);
+
         public Enemy[] enemies =
         {
             new Enemy(new Vector2(500, 600), new Vector2(20, 30), 0.5f),
@@ -53,6 +55,7 @@ namespace MohawkGame2D
             }
 
             player.Update();
+            weapon.Update(player);
         }
     }
 }
