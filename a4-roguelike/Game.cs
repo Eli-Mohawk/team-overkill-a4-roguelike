@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Numerics;
+using System.Reflection.Metadata.Ecma335;
 
 namespace MohawkGame2D
 {
@@ -9,12 +10,13 @@ namespace MohawkGame2D
 
         public Player player = new Player();
         Weapon weapon = new Weapon(0);
+        Projectile[] projectiles = new Projectile[10];
 
         public Enemy[] enemies =
         {
             new Enemy(new Vector2(500, 600), new Vector2(16, 16), 0.5f),
             new Enemy(new Vector2(200, 200), new Vector2(16, 16), 1),
-            new Enemy(new Vector2(100, 400), new Vector2(16, 16), 1.5f),
+            new Enemy(new Vector2(100, 400), new Vector2(16, 16), 1.25f),
         };
         public Screen screen = new Screen();
 
@@ -48,7 +50,7 @@ namespace MohawkGame2D
             for (int i = 0; i < walls.Length; i++) walls[i].Update(walls, player, enemies);
 
             player.Update();
-            weapon.Update(player);
+            weapon.Update(projectiles, player, enemies, walls);
 
             for (int i = 0; i < enemies.Length; i++) enemies[i].Update(player, enemies);
 
