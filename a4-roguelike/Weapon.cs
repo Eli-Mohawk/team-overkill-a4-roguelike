@@ -164,6 +164,8 @@ namespace MohawkGame2D
             }
             for (int i = 0; i < projectileIndex; i++)
             {
+                if (projectiles[i] == null) continue;
+
                 projectiles[i].Update(projectiles, player, enemies, walls);
             }
 

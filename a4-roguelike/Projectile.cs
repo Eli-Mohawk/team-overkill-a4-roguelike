@@ -51,7 +51,11 @@ namespace MohawkGame2D
 
                 bool isPlayerHit = playerLeft < projectileRight && playerRight > projectileLeft && playerTop < projectileBottom && playerBottom > projectileTop;
 
-                if (isPlayerHit) projectiles[i] = null; player.currentHP -= 1;
+                if (isPlayerHit)
+                {
+                    projectiles[i] = null;
+                    player.currentHP -= 1;
+                }
 
                 for (int j = 0; j < enemies.Length; j++)
                 {
@@ -64,7 +68,7 @@ namespace MohawkGame2D
 
                     bool isEnemyHit = enemyLeft < projectileRight && enemyRight > projectileLeft && enemyTop < projectileBottom && enemyBottom > projectileTop;
 
-                    if (isEnemyHit) projectiles[i] = null; enemies[i] = null;
+                    if (isEnemyHit) projectiles[i] = null;
                 }
 
                 for (int j = 0; j < walls.Length; j++)
@@ -75,6 +79,10 @@ namespace MohawkGame2D
                     float wallRight = wall.pos.X + wall.size.X;
                     float wallTop = wall.pos.Y;
                     float wallBottom = wall.pos.Y + wall.size.X;
+
+                    bool isWallHit = wallLeft < projectileRight && wallRight > projectileLeft && wallTop < projectileBottom && wallBottom > projectileTop;
+
+                    if (isWallHit) projectiles[i] = null;
                 }
             }
         }
