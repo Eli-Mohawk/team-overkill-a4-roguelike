@@ -19,7 +19,6 @@ namespace MohawkGame2D
 
         bool mouseClick;
 
-        Projectile[] projectiles = new Projectile[10];
         int projectileIndex = 0;
         int magCurrent = 10;
 
@@ -29,14 +28,14 @@ namespace MohawkGame2D
         }
 
 
-        public void Update(Player player)
+        public void Update(Projectile[] projectiles, Player player, Enemy[] enemies, Wall[] walls)
         {
             mousePos = Input.GetMousePosition();
             mouseClick = Input.IsMouseButtonPressed(0);
             
             if (weaponType == 0)
             {
-                Pistol();
+                Pistol(projectiles, player, enemies, walls);
             }
             drawAmmoCounter();
             drawHelp(player);
@@ -127,7 +126,7 @@ namespace MohawkGame2D
                 magCurrent = 10;
             }
         }
-        void Pistol()
+        void Pistol(Projectile[] projectiles, Player player, Enemy[] enemies, Wall[] walls)
         {
             //Darws weapon
             #region DrawPistol
@@ -165,7 +164,9 @@ namespace MohawkGame2D
             }
             for (int i = 0; i < projectileIndex; i++)
             {
-                projectiles[i].Update();
+                if (projectiles[i] == null) continue;
+
+                projectiles[i].Update(projectiles, player, enemies, walls);
             }
 
             #endregion

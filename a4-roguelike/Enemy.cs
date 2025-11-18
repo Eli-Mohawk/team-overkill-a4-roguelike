@@ -30,7 +30,7 @@ namespace MohawkGame2D
 
         public void Update(Player player, Enemy[] enemies)
         {
-            EnemyDistance(player, enemies);
+            Collision(player, enemies);
             PlayerTracking(player, enemies);
             DrawEnemy();
         }
@@ -56,7 +56,7 @@ namespace MohawkGame2D
             }
         }
 
-        void EnemyDistance(Player player, Enemy[] enemies)
+        void Collision(Player player, Enemy[] enemies)
         {
             for (int i = 0; i < enemies.Length; i++)
             {
