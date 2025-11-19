@@ -36,9 +36,9 @@ namespace MohawkGame2D
         Button[] titleButtons =
         {
             // Window. width and height dont work for some reason
-            new Button("Rule Button", 10, new Vector2(1280 /2 - 100, 800 / 3 + 280), new Vector2(200, 80), new Color(180, 30, 115), Color.White),
-            new Button("setings", 10, new Vector2(1280 /2 - 100, 800 / 3 + 400), new Vector2(200, 80), new Color(180, 30, 115), Color.White),
-            new Button("play", 10, new Vector2(1280 / 2 - 100, 800 / 3 + 160), new Vector2(200, 80), new Color(180, 30, 115), Color.White),
+            new Button("Rule Button", 10, new Vector2(1280 /2 - 100, 800 / 3 + 280), new Vector2(200, 80), new Color(26, 78, 117), Color.White),
+            new Button("setings", 10, new Vector2(1280 /2 - 100, 800 / 3 + 400), new Vector2(200, 80), new Color(26, 78, 117), Color.White),
+            new Button("play", 10, new Vector2(1280 / 2 - 100, 800 / 3 + 160), new Vector2(200, 80), new Color(26, 78, 117), Color.White),
         };
 
         Button[] ruleButtons =
@@ -108,12 +108,12 @@ namespace MohawkGame2D
             settingsButtons = new Button[]
             {
                 new Button("Back Button", 10, new Vector2(1160, 25), new Vector2(100, 40), new Color(180, 30, 115), Color.White),
-                new Button($"{movementUp}", 30, new Vector2(100, 150), new Vector2(300, 50), new Color(180, 30, 115), Color.White),
-                new Button($"{movementDown}", 30, new Vector2(100, 250), new Vector2(300, 50), new Color(180, 30, 115), Color.White),
-                new Button($"{movementLeft}", 30, new Vector2(100, 350), new Vector2(300, 50), new Color(180, 30, 115), Color.White),
-                new Button($"{movementRight}", 30, new Vector2(100, 450), new Vector2(300, 50), new Color(180, 30, 115), Color.White),
-                new Button($"{dodgeKey}", 30, new Vector2(100, 550), new Vector2(300, 50), new Color(180, 30, 115), Color.White),
-                new Button($"{reloadKey}", 30, new Vector2(100, 650), new Vector2(300, 50), new Color(180, 30, 115), Color.White),
+                new Button($"{movementUp}", 30, new Vector2(100, 150), new Vector2(300, 50), new Color(26, 78, 117), Color.White),
+                new Button($"{movementDown}", 30, new Vector2(100, 250), new Vector2(300, 50), new Color(26, 78, 117), Color.White),
+                new Button($"{movementLeft}", 30, new Vector2(100, 350), new Vector2(300, 50), new Color(26, 78, 117), Color.White),
+                new Button($"{movementRight}", 30, new Vector2(100, 450), new Vector2(300, 50), new Color(26, 78, 117), Color.White),
+                new Button($"{dodgeKey}", 30, new Vector2(100, 550), new Vector2(300, 50), new Color(26, 78, 117), Color.White),
+                new Button($"{reloadKey}", 30, new Vector2(100, 650), new Vector2(300, 50), new Color(26, 78, 117), Color.White),
             };
 
             for (int i = 0; i < settingsButtons.Length; i++) settingsButtons[i].Update(mousePos);

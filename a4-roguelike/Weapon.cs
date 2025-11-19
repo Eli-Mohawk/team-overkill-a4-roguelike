@@ -11,12 +11,12 @@ namespace MohawkGame2D
     public class Weapon
     {
         public int weaponType = 0;
-        Vector2 mousePos;
         int weaponImage = 0;
 
         Vector2 weaponSize = new Vector2(16, 16);
         Vector2 weaponPos;
 
+        Vector2 mousePos;
         bool mouseClick;
 
         int projectileIndex = 0;
@@ -27,7 +27,6 @@ namespace MohawkGame2D
             this.weaponType = weaponType;
         }
 
-
         public void Update(Projectile[] projectiles, Player player, Enemy[] enemies, Wall[] walls)
         {
             mousePos = Input.GetMousePosition();
@@ -37,6 +36,7 @@ namespace MohawkGame2D
             {
                 Pistol(projectiles, player, enemies, walls);
             }
+
             drawAmmoCounter();
             drawHelp(player);
             reloadLogic();
@@ -66,7 +66,6 @@ namespace MohawkGame2D
             if (rightScreen && middleScreenY) weaponImage = 6; // right middle
             if (rightScreen && bottomScreen) weaponImage = 7; // right bottom
 
-
             //sets position of weapon
             if (weaponImage == 0)
             {
@@ -92,7 +91,6 @@ namespace MohawkGame2D
             {
                 weaponPos = new Vector2(player.pos.X + player.size.X / 2 - weaponSize.X / 2, player.pos.Y + player.size.Y);
                 Draw.Rectangle(weaponPos, weaponSize);
-
             }
             else if (weaponImage == 5)
             {
@@ -110,7 +108,6 @@ namespace MohawkGame2D
                 Draw.Rectangle(weaponPos, weaponSize);
             }
             else {/* middle of the charater */}
-            
         }
         void drawAmmoCounter()
         {

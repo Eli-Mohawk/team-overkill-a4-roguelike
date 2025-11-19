@@ -75,7 +75,7 @@ namespace MohawkGame2D
             bool isUp = Input.IsKeyboardKeyDown((KeyboardInput)Screen.movementUp);
             bool isDown = Input.IsKeyboardKeyDown((KeyboardInput)Screen.movementDown);
 
-            bool isDodging = Input.IsKeyboardKeyDown((KeyboardInput)Screen.dodgeKey);
+            bool isDodging = Input.IsKeyboardKeyPressed((KeyboardInput)Screen.dodgeKey);
             
             if (isLeft) pos.X -= speed;
             if (isRight) pos.X += speed;
