@@ -21,6 +21,11 @@ namespace MohawkGame2D
 
         int projectileIndex = 0;
         int magCurrent = 10;
+        int magMax = 10; // temp
+
+        Vector2 barPos;
+        Vector2 maxBarSize;
+        Vector2 currentBarSize;
 
         public Weapon(int weaponType)
         {
@@ -111,9 +116,17 @@ namespace MohawkGame2D
         }
         void drawAmmoCounter()
         {
-            Text.Color = Color.White;
-            Text.Size = 15;
-            Text.Draw($"remaining ammo:{magCurrent}/10", new Vector2(10, 10));
+            barPos = new Vector2(13, 730);
+            maxBarSize = new Vector2(106, 25);
+            currentBarSize = new Vector2(maxBarSize.X / magMax * magCurrent, maxBarSize.Y);
+
+            Draw.FillColor = Color.Gray;
+            Draw.LineColor = Color.Black;
+            Draw.LineSize = 3;
+            Draw.Rectangle(barPos, maxBarSize);
+
+            Draw.FillColor = new Color(255, 170, 20);
+            Draw.Rectangle(barPos, currentBarSize);
         }
         void reloadLogic()
         {

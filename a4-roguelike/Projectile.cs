@@ -11,11 +11,10 @@ namespace MohawkGame2D
     {
         public Vector2 pos;
         public Vector2 angle;
-        public float rad = 7f;
+        public float rad = 7f; // temp
 
-        float damage = 1;
-
-        float speed = 500f;
+        float damage = 1; // temp
+        float speed = 500f; // temp
 
         public void Update(Projectile[] projectiles, Player player, Enemy[] enemies, Wall[] walls)
         {
