@@ -70,12 +70,12 @@ namespace MohawkGame2D
 
         public void Inputs()
         {
-            bool isLeft = Input.IsKeyboardKeyDown(KeyboardInput.A);
-            bool isRight = Input.IsKeyboardKeyDown(KeyboardInput.D);
-            bool isUp = Input.IsKeyboardKeyDown(KeyboardInput.W);
-            bool isDown = Input.IsKeyboardKeyDown(KeyboardInput.S);
+            bool isLeft = Input.IsKeyboardKeyDown((KeyboardInput)Screen.movementLeft);
+            bool isRight = Input.IsKeyboardKeyDown((KeyboardInput)Screen.movementRight);
+            bool isUp = Input.IsKeyboardKeyDown((KeyboardInput)Screen.movementUp);
+            bool isDown = Input.IsKeyboardKeyDown((KeyboardInput)Screen.movementDown);
 
-            bool isDodging = Input.IsKeyboardKeyPressed(KeyboardInput.Space);
+            bool isDodging = Input.IsKeyboardKeyDown((KeyboardInput)Screen.dodgeKey);
             
             if (isLeft) pos.X -= speed;
             if (isRight) pos.X += speed;

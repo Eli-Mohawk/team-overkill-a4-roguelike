@@ -120,7 +120,7 @@ namespace MohawkGame2D
         }
         void reloadLogic()
         {
-            if (Input.IsKeyboardKeyPressed(KeyboardInput.R))
+            if (Input.IsKeyboardKeyPressed((KeyboardInput)Screen.reloadKey))
             {
                 projectileIndex = 0;
                 magCurrent = 10;
