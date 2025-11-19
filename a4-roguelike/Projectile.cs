@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,6 +9,9 @@ namespace MohawkGame2D
 {
     public class Projectile
     {
+        public Vector2 pos;
+        public Vector2 angle;
+        public float rad = 7f;
 
         float speed = 500f;
 

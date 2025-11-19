@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Numerics;
+using System.Reflection.Metadata.Ecma335;
 
 namespace MohawkGame2D
 {
@@ -8,6 +9,9 @@ namespace MohawkGame2D
         Cheats cheats = new Cheats();
 
         public Player player = new Player();
+        Weapon weapon = new Weapon(0);
+        Projectile[] projectiles = new Projectile[10];
+
         public Enemy[] enemies =
         {
             new Enemy(new Vector2(500, 600), new Vector2(16, 16), 2f),
@@ -56,7 +60,6 @@ namespace MohawkGame2D
                 enemies[i].Update(player, enemies);
             }
 
-            player.Update();
         }
     }
 }
