@@ -53,17 +53,10 @@ namespace MohawkGame2D
 
         void PlayerTracking(Player player, Enemy[] enemies)
         {
-
             speed = new Vector2(speedNum, speedNum);
 
             angle = Vector2.Normalize(pos - player.pos);
             pos -= angle * speed;
-
-                enemy.speed = new Vector2(enemy.speedNum, enemy.speedNum);
-
-                enemy.angle = Vector2.Normalize(enemy.pos - player.pos);
-                enemy.pos -= enemy.angle * enemy.speed;
-            }
         }
 
         void Collision(Player player, Enemy[] enemies)
