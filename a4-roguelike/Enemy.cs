@@ -46,6 +46,7 @@ namespace MohawkGame2D
 
         void DrawEnemy()
         {
+            Draw.LineSize = 0;
             Draw.FillColor = Color.Red;
             Draw.Rectangle(pos, size);
         }
@@ -56,6 +57,8 @@ namespace MohawkGame2D
 
             angle = Vector2.Normalize(pos - player.pos);
             pos -= angle * speed;
+
+
         }
 
         void Collision(Player player, Enemy[] enemies)

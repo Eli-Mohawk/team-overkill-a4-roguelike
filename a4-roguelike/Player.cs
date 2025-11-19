@@ -90,7 +90,7 @@ namespace MohawkGame2D
             Draw.LineSize = 0;
             Draw.FillColor = Color.Red;
             Draw.Rectangle(barPos.X + 3, barPos.Y + 3, currentBarSize.X, maxBarSize.Y - 6);
-
+             
             if (currentHP <= 0) isDead = true;
         }
     }
