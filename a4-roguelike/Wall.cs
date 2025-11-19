@@ -49,12 +49,32 @@ namespace MohawkGame2D
 
                 bool isPlayerColliding = playerRight > wallLeft && playerLeft < wallRight && playerBottom > wallTop && playerTop < wallBottom;
 
+                bool isInsideWall = playerLeft > wallLeft && playerRight < wallRight && playerTop > wallTop && playerBottom < wallBottom;
+
+                // UNFINISHED
                 if (isPlayerColliding)
                 {
-                    if (playerBottom >= wallTop && playerTop < wallTop) player.pos.Y = wallTop - player.size.Y;
-                    else if (playerTop + player.speed  <= wallBottom && playerBottom - player.speed > wallBottom) player.pos.Y = wallBottom;
-                    else if (playerRight  >= wallLeft && playerLeft < wallLeft) player.pos.X = wallLeft - player.size.X;
-                    else if (playerLeft <= wallRight && playerRight > wallRight) player.pos.X = wallRight;
+                    if (isInsideWall)
+                    {
+                        float leftDist = playerLeft - wallLeft;
+                        float rightDist = playerRight - wallRight;
+                        float topDist = playerTop - wallTop;
+                        float bottomDist = playerBottom - wallBottom;
+
+                        float minDist = Math.Min(Math.Min(leftDist, rightDist), Math.Min(topDist, bottomDist));
+
+                        if (minDist == leftDist) player.pos.X = wallLeft - player.size.X;
+                        else if (minDist == rightDist) player.pos.X = wallRight;
+                        else if (minDist == topDist) player.pos.Y = wallRight - player.size.Y;
+                        else if (minDist == bottomDist) player.pos.Y = wallBottom;
+
+                        continue;
+                    }
+
+                    if (playerBottom > wallTop && playerTop < wallTop) player.pos.Y = wallTop - player.size.Y;
+                    else if (playerTop < wallBottom && playerBottom > wallBottom) player.pos.Y = wallBottom;
+                    else if (playerRight  > wallLeft && playerLeft < wallLeft) player.pos.X = wallLeft - player.size.X;
+                    else if (playerLeft < wallRight && playerRight > wallRight) player.pos.X = wallRight;
                 }
                 #endregion
 
@@ -62,6 +82,7 @@ namespace MohawkGame2D
                 for (int j = 0; j < enemies.Length; j++)
                 {
                     Enemy enemy = enemies[j];
+                    if (enemy == null) continue;
 
                     float enemyLeft = enemy.pos.X;
                     float enemyRight = enemy.pos.X + enemy.size.X;
@@ -72,10 +93,10 @@ namespace MohawkGame2D
 
                     if (isEnemyColliding)
                     {
-                        if (enemyBottom >= wallTop && enemyTop < wallTop) enemy.pos.Y = wallTop - enemy.size.Y;
-                        else if (enemyTop <= wallBottom && enemyBottom > wallBottom) enemy.pos.Y = wallBottom;
-                        else if (enemyRight >= wallLeft && enemyLeft < wallLeft) enemy.pos.X = wallLeft - enemy.size.X;
-                        else if (enemyLeft <= wallRight && enemyRight > wallRight) enemy.pos.X = wallRight;
+                        if (enemyBottom > wallTop && enemyTop < wallTop) enemy.pos.Y = wallTop - enemy.size.Y;
+                        else if (enemyTop < wallBottom && enemyBottom > wallBottom) enemy.pos.Y = wallBottom;
+                        else if (enemyRight > wallLeft && enemyLeft < wallLeft) enemy.pos.X = wallLeft - enemy.size.X;
+                        else if (enemyLeft < wallRight && enemyRight > wallRight) enemy.pos.X = wallRight;
                     }
                 }
                 #endregion

@@ -10,11 +10,11 @@ namespace MohawkGame2D
     {
         public void Update(Screen screen, Player player)
         {
-            ChangeLevel(screen, player);
+            ChangeLevel(screen);
             KillYourself(player);
         }
 
-        void ChangeLevel(Screen screen, Player player)
+        void ChangeLevel(Screen screen)
         {
             if (Input.IsKeyboardKeyPressed(KeyboardInput.L)) screen.currentScreen += 1;
             if (Input.IsKeyboardKeyPressed(KeyboardInput.K)) screen.currentScreen -= 1;
@@ -23,8 +23,7 @@ namespace MohawkGame2D
 
         void KillYourself(Player player)
         {
-            if (Input.IsKeyboardKeyPressed(KeyboardInput.P)) player.currentHP -= 1;
-            if (Input.IsKeyboardKeyPressed(KeyboardInput.O)) player.currentHP = 0;
+            if (Input.IsKeyboardKeyPressed(KeyboardInput.P)) player.currentHP -= 10;
         }
     }
 }

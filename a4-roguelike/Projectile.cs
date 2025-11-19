@@ -60,6 +60,7 @@ namespace MohawkGame2D
                 for (int j = 0; j < enemies.Length; j++)
                 {
                     Enemy enemy = enemies[j];
+                    if (enemy == null) continue;
 
                     float enemyLeft = enemy.pos.X;
                     float enemyRight = enemy.pos.X + enemy.size.X;
@@ -68,7 +69,11 @@ namespace MohawkGame2D
 
                     bool isEnemyHit = enemyLeft < projectileRight && enemyRight > projectileLeft && enemyTop < projectileBottom && enemyBottom > projectileTop;
 
-                    if (isEnemyHit) projectiles[i] = null;
+                    if (isEnemyHit)
+                    {
+                        projectiles[i] = null;
+                        enemy.currentHP -= 1;
+                    }
                 }
 
                 for (int j = 0; j < walls.Length; j++)
