@@ -20,7 +20,7 @@ namespace MohawkGame2D
         float meleeCooldown = 2;
 
         public float maxHP = 5;
-        public float currentHP; 
+        public float currentHP;
         Vector2 barPos;
         Vector2 barSize;
 
@@ -63,32 +63,26 @@ namespace MohawkGame2D
 
         void Collision(Player player, Enemy[] enemies)
         {
-            for (int i = 0; i < enemies.Length; i++)
+            float playerLeft = player.pos.X;
+            float playerRight = player.pos.X + player.size.X;
+            float playerTop = player.pos.Y;
+            float playerBottom = player.pos.Y + player.size.Y;
+
+            float enemyLeft = pos.X;
+            float enemyRight = pos.X + size.X;
+            float enemyTop = pos.Y;
+            float enemyBottom = pos.Y + size.Y;
+
+            bool isColliding = playerLeft < enemyRight && playerRight > enemyLeft && playerTop < enemyBottom && playerBottom > enemyTop;
+
+            if (isColliding)
             {
-                Enemy enemy = enemies[i];
-                if (enemy == null) continue;
+                meleeAttack += Time.DeltaTime;
 
-                float playerLeft = player.pos.X;
-                float playerRight = player.pos.X + player.size.X;
-                float playerTop = player.pos.Y;
-                float playerBottom = player.pos.Y + player.size.Y;
-
-                float enemyLeft = enemy.pos.X;
-                float enemyRight = enemy.pos.X + enemy.size.X;
-                float enemyTop = enemy.pos.Y;
-                float enemyBottom = enemy.pos.Y + enemy.size.Y;
-
-                bool isColliding = playerLeft < enemyRight && playerRight > enemyLeft && playerTop < enemyBottom && playerBottom > enemyTop;
-
-                if (isColliding)
+                if (meleeAttack >= meleeCooldown)
                 {
-                    meleeAttack += Time.DeltaTime;
-
-                    if (meleeAttack >= meleeCooldown)
-                    {
-                        meleeAttack = 0;
-                        player.currentHP -= 1;
-                    }
+                    meleeAttack = 0;
+                    player.currentHP -= 1;
                 }
             }
         }

@@ -7,6 +7,7 @@ using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace MohawkGame2D
 {
@@ -87,10 +88,20 @@ namespace MohawkGame2D
             Draw.FillColor = Color.DarkGray;
             Draw.Rectangle(barPos, maxBarSize);
 
-            Draw.LineSize = 0;
-            Draw.FillColor = Color.Red;
-            Draw.Rectangle(barPos.X + 3, barPos.Y + 3, currentBarSize.X, maxBarSize.Y - 6);
-             
+            if (currentHP > 0)
+            {
+                Draw.LineSize = 0;
+                Draw.FillColor = Color.Red;
+                Draw.Rectangle(barPos.X + 3, barPos.Y + 3, currentBarSize.X, maxBarSize.Y - 6);
+            }
+
+            Text.Color = Color.White;
+            Text.Size = 15;
+            int textWidth = Raylib.MeasureText($"HP: {currentHP}/{maxHP}", 15);
+            float textX = barPos.X + (maxBarSize.X / 2 - textWidth / 2);
+            float textY = barPos.Y + (maxBarSize.Y / 2 - 15 / 2);
+            Text.Draw($"HP: {currentHP}/{maxHP}", new Vector2(textX - 3, textY));
+
             if (currentHP <= 0) isDead = true;
         }
     }

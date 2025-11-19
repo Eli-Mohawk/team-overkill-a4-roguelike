@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Raylib_cs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
@@ -125,8 +126,19 @@ namespace MohawkGame2D
             Draw.LineSize = 3;
             Draw.Rectangle(barPos, maxBarSize);
 
-            Draw.FillColor = new Color(255, 170, 20);
-            Draw.Rectangle(barPos, currentBarSize);
+            if (magCurrent > 0)
+            {
+                Draw.LineSize = 0;
+                Draw.FillColor = new Color(255, 170, 20);
+                Draw.Rectangle(barPos.X + 3, barPos.Y + 3, currentBarSize.X - 6, maxBarSize.Y - 6);
+            }
+
+            Text.Color = Color.White;
+            Text.Size = 15;
+            int textWidth = Raylib.MeasureText($"HP: {magCurrent}/{magMax}", 15);
+            float textX = barPos.X + (maxBarSize.X / 2 - textWidth / 2);
+            float textY = barPos.Y + (maxBarSize.Y / 2 - 15 / 2);
+            Text.Draw($"HP: {magCurrent}/{magMax}", new Vector2(textX - 3, textY));
         }
         void reloadLogic()
         {
