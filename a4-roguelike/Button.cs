@@ -20,8 +20,8 @@ namespace MohawkGame2D
         public Color textColor;
 
         Color hoverColor;
-
         public bool isHovering;
+
         public Button(String text, int fontSize, Vector2 pos, Vector2 size, Color color, Color textColor)
         {
             this.text = text;
@@ -50,14 +50,13 @@ namespace MohawkGame2D
 
             Text.Size = fontSize;
             int textWidth = Raylib.MeasureText(text, fontSize);
-
             float textX = pos.X + (size.X / 2 - textWidth / 2);
             float textY = pos.Y + (size.Y / 2 - fontSize / 2);
-
             Text.Color = textColor;
+
             Text.Draw(text, new Vector2(textX, textY));
         }
-        //
+
         public bool IsClicked(Vector2 mousePos, bool isHovering)
         {
             bool isMousePressed = Input.IsMouseButtonPressed(MouseInput.Left);

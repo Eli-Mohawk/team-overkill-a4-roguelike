@@ -50,22 +50,10 @@ namespace MohawkGame2D
             float playerTop = pos.Y;
             float playerBottom = pos.Y + size.Y;
 
-            if (playerLeft < 0)
-            {
-                pos.X = 0;
-            }
-            if (playerRight > Window.Width)
-            {
-                pos.X = Window.Width - size.X;
-            }
-            if (playerTop < 0)
-            {
-                pos.Y = 0;
-            }
-            if (playerBottom > Window.Height)
-            {
-                pos.Y = Window.Height - size.Y;
-            }
+            if (playerLeft < 0) pos.X = 0;
+            if (playerRight > Window.Width) pos.X = Window.Width - size.X;
+            if (playerTop < 0) pos.Y = 0;
+            if (playerBottom > Window.Height) pos.Y = Window.Height - size.Y;
         }
 
         public void Inputs()

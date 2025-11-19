@@ -10,7 +10,6 @@ namespace MohawkGame2D
 {
     public class Enemy
     {
-
         public Vector2 pos;
         public Vector2 size;
         float speedNum;
@@ -98,14 +97,14 @@ namespace MohawkGame2D
                 Enemy enemy = enemies[i];
                 if (enemy == null) continue;
 
-                if (enemy.currentHP == 0) enemies[i] = null;
-
                 barPos = new Vector2(enemy.pos.X, enemy.pos.Y + 26);
                 barSize = new Vector2(enemy.size.X / enemy.maxHP * enemy.currentHP, 5);
 
                 Draw.LineSize = 0;
                 Draw.FillColor = Color.Green;
                 Draw.Rectangle(barPos, barSize);
+
+                if (enemy.currentHP == 0) enemies[i] = null;
             }
         }
     }

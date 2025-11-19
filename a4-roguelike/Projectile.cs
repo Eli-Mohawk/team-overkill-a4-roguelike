@@ -13,6 +13,8 @@ namespace MohawkGame2D
         public Vector2 angle;
         public float rad = 7f;
 
+        float damage = 1;
+
         float speed = 500f;
 
         public void Update(Projectile[] projectiles, Player player, Enemy[] enemies, Wall[] walls)
@@ -21,11 +23,13 @@ namespace MohawkGame2D
             Movement();
             DrawBullet();
         }
+
         void DrawBullet()
         {
             Draw.FillColor = Color.Gray;
             Draw.Circle(pos, rad);
         }
+
         public void Movement()
         {
             pos += speed * angle * Time.DeltaTime;
@@ -36,7 +40,6 @@ namespace MohawkGame2D
             for (int i = 0; i < projectiles.Length; i++)
             {
                 Projectile projectile = projectiles[i];
-
                 if (projectile == null) continue;
 
                 float projectileLeft = projectile.pos.X - projectile.rad;
@@ -72,13 +75,14 @@ namespace MohawkGame2D
                     if (isEnemyHit)
                     {
                         projectiles[i] = null;
-                        enemy.currentHP -= 1;
+                        enemy.currentHP -= damage;
                     }
                 }
 
                 for (int j = 0; j < walls.Length; j++)
                 {
                     Wall wall = walls[j];
+                    if (walls[j] == null) continue;
 
                     float wallLeft = wall.pos.X;
                     float wallRight = wall.pos.X + wall.size.X;
