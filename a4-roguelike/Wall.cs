@@ -35,6 +35,7 @@ namespace MohawkGame2D
             for (int i = 0; i < walls.Length; i++)
             {
                 Wall wall = walls[i];
+                if (walls[i] == null) continue;
 
                 float wallLeft = wall.pos.X;
                 float wallRight = wall.pos.X + wall.size.X;
@@ -48,7 +49,6 @@ namespace MohawkGame2D
                 float playerBottom = player.pos.Y + player.size.Y;
 
                 bool isPlayerColliding = playerRight > wallLeft && playerLeft < wallRight && playerBottom > wallTop && playerTop < wallBottom;
-
                 bool isInsideWall = playerLeft > wallLeft && playerRight < wallRight && playerTop > wallTop && playerBottom < wallBottom;
 
                 // UNFINISHED

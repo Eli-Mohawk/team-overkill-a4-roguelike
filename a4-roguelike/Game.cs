@@ -9,8 +9,11 @@ namespace MohawkGame2D
         Cheats cheats = new Cheats();
 
         public Player player = new Player();
+
         Weapon weapon = new Weapon(0);
         Projectile[] projectiles = new Projectile[10];
+
+        public Screen screen = new Screen();
 
         public Enemy[] enemies =
         {
@@ -18,7 +21,6 @@ namespace MohawkGame2D
             new Enemy(new Vector2(200, 200), new Vector2(16, 16), 2f),
             new Enemy(new Vector2(100, 400), new Vector2(16, 16), 2f),
         };
-        public Screen screen = new Screen();
 
         Wall[] walls =
         {
@@ -32,20 +34,19 @@ namespace MohawkGame2D
             Window.SetTitle("Data Wraith Descent");
 
             player.Setup();
+
             for (int i = 0; i < enemies.Length; i++) enemies[i].Setup();
         }
 
         public void Update()
         {
             Window.ClearBackground(new Color(46, 46, 46));
-
             Vector2 mousePos = Input.GetMousePosition();
 
             cheats.Update(screen, player);
 
-            if (player.isDead) screen.currentScreen = 5;
-
             screen.Update(mousePos);
+            if (player.isDead) screen.currentScreen = 5;
             if (screen.currentScreen != 3) return;
             
             for (int i = 0; i < walls.Length; i++) walls[i].Update(walls, player, enemies);
@@ -59,7 +60,6 @@ namespace MohawkGame2D
                 
                 enemies[i].Update(player, enemies);
             }
-
         }
     }
 }
