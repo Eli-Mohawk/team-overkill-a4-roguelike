@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,13 +19,19 @@ namespace MohawkGame2D
 
     public class Screen
     {
-        KeyboardKey movementUp = KeyboardKey.W;
-        KeyboardKey movementDown = KeyboardKey.S;
-        KeyboardKey movementLeft = KeyboardKey.A;
-        KeyboardKey movementRight = KeyboardKey.D;
-        KeyboardKey dodgeKey = KeyboardKey.Space;
-        KeyboardKey reloadKey = KeyboardKey.R;
+        public static KeyboardKey movementUp = KeyboardKey.W;
+        public static KeyboardKey movementDown = KeyboardKey.S;
+        public static KeyboardKey movementLeft = KeyboardKey.A;
+        public static KeyboardKey movementRight = KeyboardKey.D;
+        public static KeyboardKey dodgeKey = KeyboardKey.Space;
+        public static KeyboardKey reloadKey = KeyboardKey.R;
 
+        bool askInputUP = false;
+        bool askInputDOWN = false;
+        bool askInputLEFT = false;
+        bool askInputRIGHT = false;
+        bool askInputDODGE = false;
+        bool askInputRELOAD = false;
 
         Button[] titleButtons =
         {
@@ -39,10 +46,7 @@ namespace MohawkGame2D
             new Button("Back Button", 10, new Vector2(1160, 25), new Vector2(100, 40), new Color(180, 30, 115), Color.White),
         };
 
-        Button[] settingsButtons =
-        {
-            new Button("Back Button", 10, new Vector2(1160, 25), new Vector2(40, 20), new Color(180, 30, 115), Color.White),
-        };
+        Button[] settingsButtons;
 
         public int currentScreen = 0;
         public bool isChangeLeft;
@@ -101,12 +105,87 @@ namespace MohawkGame2D
 
         void SettingsScreen(Vector2 mousePos, Button[] settingsButtons)
         {
+            settingsButtons = new Button[]
+            {
+                new Button("Back Button", 10, new Vector2(1160, 25), new Vector2(100, 40), new Color(180, 30, 115), Color.White),
+                new Button($"{movementUp}", 30, new Vector2(100, 150), new Vector2(300, 50), new Color(180, 30, 115), Color.White),
+                new Button($"{movementDown}", 30, new Vector2(100, 250), new Vector2(300, 50), new Color(180, 30, 115), Color.White),
+                new Button($"{movementLeft}", 30, new Vector2(100, 350), new Vector2(300, 50), new Color(180, 30, 115), Color.White),
+                new Button($"{movementRight}", 30, new Vector2(100, 450), new Vector2(300, 50), new Color(180, 30, 115), Color.White),
+                new Button($"{dodgeKey}", 30, new Vector2(100, 550), new Vector2(300, 50), new Color(180, 30, 115), Color.White),
+                new Button($"{reloadKey}", 30, new Vector2(100, 650), new Vector2(300, 50), new Color(180, 30, 115), Color.White),
+            };
+
             for (int i = 0; i < settingsButtons.Length; i++) settingsButtons[i].Update(mousePos);
 
             Text.Size = 70;
             Text.Draw("SETTINGS SCREEN", new Vector2(100, 25));
+            Text.Size = 20;
+            Text.Draw("click buttons to remap", new Vector2(100, 120));
+            Text.Size = 50;
+            Text.Draw(" - UP", new Vector2(410, 150));
+            Text.Draw(" - DOWN", new Vector2(410, 250));
+            Text.Draw(" - LEFT", new Vector2(410, 350));
+            Text.Draw(" - RIGHT", new Vector2(410, 450));
+            Text.Draw(" - DODGE", new Vector2(410, 550));
+            Text.Draw(" - RELOAD", new Vector2(410, 650));
+            if (!askInputUP || !askInputDOWN || !askInputLEFT || !askInputRIGHT || !askInputDODGE || !askInputRELOAD)
+            {
+                if (settingsButtons[0].IsClicked(mousePos, settingsButtons[0].isHovering)) currentScreen = 0;
 
-            if (settingsButtons[0].IsClicked(mousePos, settingsButtons[0].isHovering)) currentScreen = 0;
+                if (settingsButtons[1].IsClicked(mousePos, settingsButtons[1].isHovering)) askInputUP = true;
+                if (settingsButtons[2].IsClicked(mousePos, settingsButtons[2].isHovering)) askInputDOWN = true;
+                if (settingsButtons[3].IsClicked(mousePos, settingsButtons[3].isHovering)) askInputLEFT = true;
+                if (settingsButtons[4].IsClicked(mousePos, settingsButtons[4].isHovering)) askInputRIGHT = true;
+                if (settingsButtons[5].IsClicked(mousePos, settingsButtons[5].isHovering)) askInputDODGE = true;
+                if (settingsButtons[6].IsClicked(mousePos, settingsButtons[6].isHovering)) askInputRELOAD = true;
+            }
+
+            if (askInputUP || askInputDOWN || askInputLEFT || askInputRIGHT || askInputDODGE || askInputRELOAD)
+            {
+                //tells player to pick a new key bind
+                Text.Size = 100;
+                Draw.FillColor = Color.DarkGray;
+                Draw.Rectangle(new Vector2(0, 0), new Vector2(1280, 800));
+                Text.Draw("Click a key on your ", new Vector2(10, 200));
+                Text.Draw("keyboard ", new Vector2(110, 310));
+                //tracks button input
+                int keyPressed = Raylib.GetKeyPressed();
+                //remaps button input and stops asling for new input
+                if (keyPressed != 0)
+                {
+                    if (askInputUP)
+                    {
+                        movementUp = (KeyboardKey)keyPressed;
+                        askInputUP = false;
+                    }
+                    if (askInputDOWN)
+                    {
+                        movementDown = (KeyboardKey)keyPressed;
+                        askInputDOWN = false;
+                    }
+                    if(askInputLEFT)
+                    {
+                        movementLeft = (KeyboardKey)keyPressed;
+                        askInputLEFT = false;
+                    }
+                    if (askInputRIGHT)
+                    {
+                        movementRight = (KeyboardKey)keyPressed;
+                        askInputRIGHT = false;
+                    }
+                    if(askInputDODGE)
+                    {
+                        dodgeKey = (KeyboardKey)keyPressed;
+                        askInputDODGE = false;
+                    }
+                    if(askInputRELOAD)
+                    {
+                        reloadKey = (KeyboardKey)keyPressed;
+                        askInputRELOAD = false;
+                    }
+                }
+            }
         }
 
         void GameOverScreen()
