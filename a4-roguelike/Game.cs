@@ -14,6 +14,7 @@ namespace MohawkGame2D
         Projectile[] projectiles = new Projectile[10];
 
         public Screen screen = new Screen();
+        public Level level = new Level();
 
         public Enemy[] enemies =
         {

@@ -9,7 +9,14 @@ namespace MohawkGame2D
 {
     public class Level
     {
+        public void Update()
+        {
 
-        
+        }
+
+        void LevelOne()
+        {
+
+        }
     }
 }

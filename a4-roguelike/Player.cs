@@ -13,7 +13,7 @@ namespace MohawkGame2D
 {
     public class Player
     {
-        public Vector2 pos = new Vector2(300, 200);
+        public Vector2 pos = new Vector2(310, 210);
         public Vector2 size = new Vector2(16, 16);
         public float speed = 5;
 

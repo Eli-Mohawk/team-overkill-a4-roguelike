@@ -188,6 +188,11 @@ namespace MohawkGame2D
             }
         }
 
+        void GameScreen(Level[] levels)
+        {
+
+        }
+
         void GameOverScreen()
         {
             Text.Size = 100;
