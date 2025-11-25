@@ -9,14 +9,19 @@ namespace MohawkGame2D
 {
     public class Level
     {
-        public void Update()
+        public void Update(Wall[] walls)
         {
-
+            LevelOne(walls);
         }
 
-        void LevelOne()
+        void LevelOne(Wall[] walls)
         {
+            for (int i = 0; i < walls.Length; i++)
+            {
+                
 
+
+            }
         }
     }
 }

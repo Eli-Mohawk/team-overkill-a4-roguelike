@@ -49,7 +49,9 @@ namespace MohawkGame2D
             screen.Update(mousePos);
             if (player.isDead) screen.currentScreen = 5;
             if (screen.currentScreen != 3) return;
-            
+
+            level.Update(walls);
+
             for (int i = 0; i < walls.Length; i++) walls[i].Update(walls, player, enemies);
 
             player.Update();
