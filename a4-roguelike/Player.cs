@@ -16,6 +16,7 @@ namespace MohawkGame2D
         public Vector2 pos = new Vector2(310, 210);
         public Vector2 size = new Vector2(16, 16);
         public float speed = 5;
+        public int killCount;
 
         float maxHP = 100;
         public float currentHP;
@@ -40,6 +41,7 @@ namespace MohawkGame2D
 
         void DrawPlayer()
         {
+            Draw.LineSize = 0;
             Draw.FillColor = Color.Yellow;
             Draw.Rectangle(pos, size);
         }

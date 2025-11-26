@@ -73,6 +73,7 @@ namespace MohawkGame2D
             if (rightScreen && bottomScreen) weaponImage = 7; // right bottom
 
             //sets position of weapon
+            Draw.LineSize = 0;
             if (weaponImage == 0)
             {
                 weaponPos = player.pos - weaponSize;
