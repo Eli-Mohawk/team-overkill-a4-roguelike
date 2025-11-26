@@ -10,6 +10,20 @@ namespace MohawkGame2D
     public class Level
     {
         public int levelScreen = 1;
+        Vector2 BRB = new Vector2(1280 * 0.75f, 800);
+        Vector2 TRT = new Vector2(1280 * 0.75f, 0);
+        Vector2 TRR = new Vector2(1280, 800 * 0.25f);
+        Vector2 TLL = new Vector2(0, 800 * 0.25f);
+        Vector2 TRB = new Vector2(1280 * 0.75f, 800);
+        Vector2 BLL = new Vector2(0, 800 * 0.75f);
+        Vector2 BRR = new Vector2(1280, 800 * 0.75f);
+        Vector2 T = new Vector2(1280 / 2, 0);
+        Vector2 B = new Vector2(1280 / 2, 800);
+        Vector2 L = new Vector2(0, 800 / 2);
+        Vector2 R = new Vector2(1280, 800 / 2);
+
+        int TL = 10;
+        int BR = 790;
 
         public void Update(Player player, Screen screen)
         {
@@ -36,18 +50,19 @@ namespace MohawkGame2D
 
         void ScreenOne(Player player) // 4
         {
-            if (player.pos.Y + player.size.Y >= Window.Height)
+            if (player.pos.X > BRB.X - 15 && player.pos.X + player.size.X < BRB.X + 15 && player.pos.Y + player.size.Y >= BRB.Y)
             {
                 levelScreen = 2;
-                player.pos.Y = 5;
+                player.pos.Y = TL;
             }
         }
+
         void ScreenTwo(Player player) // 2-4
         {
-            if (player.pos.Y <= 0)
+            if (player.pos.X > TRT.X - 15 && player.pos.X < TRT.X + 15 && player.pos.Y <= TRT.Y)
             {
                 levelScreen = 1;
-                player.pos.Y = Window.Height - player.size.Y - 5;
+                player.pos.Y = BR;
             }
             if (player.pos.Y + player.size.Y >= Window.Height)
             {
