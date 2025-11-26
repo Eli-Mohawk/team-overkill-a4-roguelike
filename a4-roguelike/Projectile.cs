@@ -25,6 +25,7 @@ namespace MohawkGame2D
 
         void DrawBullet()
         {
+            Draw.LineSize = 0;
             Draw.FillColor = Color.DarkGray;
             Draw.Circle(pos, rad);
         }
