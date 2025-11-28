@@ -41,7 +41,7 @@ namespace MohawkGame2D
             Collision(player, enemies);
             PlayerTracking(player, enemies);
             DrawEnemy();
-            HealthSystem(enemies);
+            HealthSystem(enemies, player);
         }
 
         void DrawEnemy()
@@ -57,8 +57,6 @@ namespace MohawkGame2D
 
             angle = Vector2.Normalize(pos - player.pos);
             pos -= angle * speed;
-
-
         }
 
         void Collision(Player player, Enemy[] enemies)
@@ -82,12 +80,12 @@ namespace MohawkGame2D
                 if (meleeAttack >= meleeCooldown)
                 {
                     meleeAttack = 0;
-                    player.currentHP -= 1;
+                    player.currentHP -= 5;
                 }
             }
         }
 
-        void HealthSystem(Enemy[] enemies)
+        void HealthSystem(Enemy[] enemies, Player player)
         {
             for (int i = 0; i < enemies.Length; i++)
             {
@@ -101,7 +99,11 @@ namespace MohawkGame2D
                 Draw.FillColor = Color.Green;
                 Draw.Rectangle(barPos, barSize);
 
-                if (enemy.currentHP == 0) enemies[i] = null;
+                if (enemy.currentHP == 0)
+                {
+                    enemies[i] = null;
+                    player.killCount += 1;
+                }
             }
         }
     }

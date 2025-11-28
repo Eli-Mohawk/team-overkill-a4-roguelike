@@ -26,6 +26,7 @@ namespace MohawkGame2D
 
         void DrawWalls()
         {
+            Draw.LineSize = 0;
             Draw.FillColor = Color.Blue;
             Draw.Rectangle(pos, size);
         }

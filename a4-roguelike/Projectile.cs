@@ -11,7 +11,7 @@ namespace MohawkGame2D
     {
         public Vector2 pos;
         public Vector2 angle;
-        public float rad = 7f; // temp
+        public float rad = 3.5f; // temp
 
         float damage = 1; // temp
         float speed = 500f; // temp
@@ -25,7 +25,8 @@ namespace MohawkGame2D
 
         void DrawBullet()
         {
-            Draw.FillColor = Color.DarkGray;
+            Draw.LineSize = 0;
+            Draw.FillColor = Color.White;
             Draw.Circle(pos, rad);
         }
 

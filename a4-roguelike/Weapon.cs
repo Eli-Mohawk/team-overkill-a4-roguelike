@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
@@ -28,6 +29,7 @@ namespace MohawkGame2D
         Vector2 maxBarSize;
         Vector2 currentBarSize;
 
+        public Vector2 gunSubset;
         public Weapon(int weaponType)
         {
             this.weaponType = weaponType;
@@ -72,46 +74,53 @@ namespace MohawkGame2D
             if (rightScreen && middleScreenY) weaponImage = 6; // right middle
             if (rightScreen && bottomScreen) weaponImage = 7; // right bottom
 
+            Texture2D gunSpriteSheet = new Texture2D
+            {
+                FilePath = @"Sprites\guns-overkill.png",
+                FileName = "guns-overkill.png",
+                RaylibTexture2D = Raylib.LoadTexture(@"Sprites\guns-overkill.png")
+            };
             //sets position of weapon
-            if (weaponImage == 0)
+            Draw.LineSize = 0;
+            if (weaponImage == 0)//top left
             {
                 weaponPos = player.pos - weaponSize;
-                Draw.Rectangle(weaponPos, weaponSize);
+                Graphics.DrawSubset(gunSpriteSheet, weaponPos, gunSubset, new Vector2(16, 16));
             }
-            else if (weaponImage == 1)
+            else if (weaponImage == 1)//left
             {
                 weaponPos = new Vector2(player.pos.X - weaponSize.X, player.pos.Y + player.size.Y / 2 - weaponSize.Y / 2);
-                Draw.Rectangle(weaponPos, weaponSize);
+                Graphics.DrawSubset(gunSpriteSheet, weaponPos, gunSubset, new Vector2(16, 16));
             }
-            else if (weaponImage == 2)
+            else if (weaponImage == 2)//bottom left
             {
                 weaponPos = new Vector2(player.pos.X - weaponSize.X, player.pos.Y + player.size.Y);
-                Draw.Rectangle(weaponPos, weaponSize);
+                Graphics.DrawSubset(gunSpriteSheet, weaponPos, gunSubset, new Vector2(16, 16));
             }
-            else if (weaponImage == 3)
+            else if (weaponImage == 3)//top
             {
                 weaponPos = new Vector2(player.pos.X + player.size.X / 2 - weaponSize.X / 2, player.pos.Y - weaponSize.Y);
-                Draw.Rectangle(weaponPos, weaponSize);
+                Graphics.DrawSubset(gunSpriteSheet, weaponPos, gunSubset, new Vector2(16, 16));
             }
-            else if (weaponImage == 4)
+            else if (weaponImage == 4)//bottom
             {
                 weaponPos = new Vector2(player.pos.X + player.size.X / 2 - weaponSize.X / 2, player.pos.Y + player.size.Y);
-                Draw.Rectangle(weaponPos, weaponSize);
+                Graphics.DrawSubset(gunSpriteSheet, weaponPos, gunSubset, new Vector2(16, 16));
             }
-            else if (weaponImage == 5)
+            else if (weaponImage == 5)//top right
             {
                 weaponPos = new Vector2(player.pos.X + player.size.X, player.pos.Y - weaponSize.Y);
-                Draw.Rectangle(weaponPos, weaponSize);
+                Graphics.DrawSubset(gunSpriteSheet, weaponPos, gunSubset, new Vector2(16, 16));
             }
-            else if (weaponImage == 6)
+            else if (weaponImage == 6)//right
             {
                 weaponPos = new Vector2(player.pos.X + player.size.X, player.pos.Y + player.size.Y / 2 - weaponSize.Y / 2);
-                Draw.Rectangle(weaponPos, weaponSize);
+                Graphics.DrawSubset(gunSpriteSheet, weaponPos, gunSubset, new Vector2(16, 16));
             }
-            else if (weaponImage == 7)
+            else if (weaponImage == 7)//bottom right
             {
                 weaponPos = new Vector2(player.pos.X + player.size.X, player.pos.Y + player.size.Y);
-                Draw.Rectangle(weaponPos, weaponSize);
+                Graphics.DrawSubset(gunSpriteSheet, weaponPos, gunSubset, new Vector2(16,16));
             }
             else {/* middle of the charater */}
         }
@@ -153,21 +162,21 @@ namespace MohawkGame2D
             //Darws weapon
             #region DrawPistol
             //assign image ( right now its color )
-            if (weaponImage == 0) Draw.FillColor = Color.White;
+            if (weaponImage == 0) gunSubset = new Vector2(32, 16);
 
-            else if (weaponImage == 1) Draw.FillColor = Color.Green;
+            else if (weaponImage == 1) gunSubset = new Vector2(0, 16);
 
-            else if (weaponImage == 2) Draw.FillColor = Color.Red;
+            else if (weaponImage == 2) gunSubset = new Vector2(48, 16);
 
-            else if (weaponImage == 3) Draw.FillColor = Color.Green;
+            else if (weaponImage == 3) gunSubset = new Vector2(16, 16);
 
-            else if (weaponImage == 4) Draw.FillColor = Color.Green;
+            else if (weaponImage == 4) gunSubset = new Vector2(16, 0);
 
-            else if (weaponImage == 5) Draw.FillColor = Color.Red;
+            else if (weaponImage == 5) gunSubset = new Vector2(48, 0);
 
-            else if (weaponImage == 6) Draw.FillColor = Color.Green;
+            else if (weaponImage == 6) gunSubset = new Vector2(0, 0);
 
-            else if (weaponImage == 7) Draw.FillColor = Color.White;
+            else if (weaponImage == 7) gunSubset = new Vector2(32, 0);
 
             #endregion
 

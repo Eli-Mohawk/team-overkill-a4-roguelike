@@ -56,6 +56,7 @@ namespace MohawkGame2D
             if (currentScreen == 0) TitleScreen(mousePos, titleButtons);
             if (currentScreen == 1) RuleScreen(mousePos, ruleButtons);
             if (currentScreen == 2) SettingsScreen(mousePos, settingsButtons);
+            if (currentScreen == 4) GameWinScreen();
             if (currentScreen == 5) GameOverScreen();
         }
 
@@ -191,6 +192,12 @@ namespace MohawkGame2D
         void GameScreen(Level[] levels)
         {
 
+        }
+
+        void GameWinScreen()
+        {
+            Text.Size = 100;
+            Text.Draw("You Won!", new Vector2(20, 20));
         }
 
         void GameOverScreen()
