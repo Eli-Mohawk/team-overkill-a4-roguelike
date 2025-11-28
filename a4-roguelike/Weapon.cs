@@ -15,7 +15,7 @@ namespace MohawkGame2D
         public int weaponType = 0;
         int weaponImage = 0;
 
-        Vector2 weaponSize = new Vector2(16, 16);
+        Vector2 weaponSize = new Vector2(32, 32);
         Vector2 weaponPos;
 
         Vector2 mousePos;
@@ -39,7 +39,7 @@ namespace MohawkGame2D
         {
             mousePos = Input.GetMousePosition();
             mouseClick = Input.IsMouseButtonPressed(0);
-            
+
             if (weaponType == 0)
             {
                 Pistol(projectiles, player, enemies, walls);
@@ -85,42 +85,42 @@ namespace MohawkGame2D
             if (weaponImage == 0)//top left
             {
                 weaponPos = player.pos - weaponSize;
-                Graphics.DrawSubset(gunSpriteSheet, weaponPos, gunSubset, new Vector2(16, 16));
+                Graphics.DrawSubset(gunSpriteSheet, weaponPos, gunSubset, new Vector2(32, 32));
             }
             else if (weaponImage == 1)//left
             {
                 weaponPos = new Vector2(player.pos.X - weaponSize.X, player.pos.Y + player.size.Y / 2 - weaponSize.Y / 2);
-                Graphics.DrawSubset(gunSpriteSheet, weaponPos, gunSubset, new Vector2(16, 16));
+                Graphics.DrawSubset(gunSpriteSheet, weaponPos, gunSubset, new Vector2(32, 32));
             }
             else if (weaponImage == 2)//bottom left
             {
                 weaponPos = new Vector2(player.pos.X - weaponSize.X, player.pos.Y + player.size.Y);
-                Graphics.DrawSubset(gunSpriteSheet, weaponPos, gunSubset, new Vector2(16, 16));
+                Graphics.DrawSubset(gunSpriteSheet, weaponPos, gunSubset, new Vector2(32, 32));
             }
             else if (weaponImage == 3)//top
             {
                 weaponPos = new Vector2(player.pos.X + player.size.X / 2 - weaponSize.X / 2, player.pos.Y - weaponSize.Y);
-                Graphics.DrawSubset(gunSpriteSheet, weaponPos, gunSubset, new Vector2(16, 16));
+                Graphics.DrawSubset(gunSpriteSheet, weaponPos, gunSubset, new Vector2(32, 32));
             }
             else if (weaponImage == 4)//bottom
             {
                 weaponPos = new Vector2(player.pos.X + player.size.X / 2 - weaponSize.X / 2, player.pos.Y + player.size.Y);
-                Graphics.DrawSubset(gunSpriteSheet, weaponPos, gunSubset, new Vector2(16, 16));
+                Graphics.DrawSubset(gunSpriteSheet, weaponPos, gunSubset, new Vector2(32, 32));
             }
             else if (weaponImage == 5)//top right
             {
                 weaponPos = new Vector2(player.pos.X + player.size.X, player.pos.Y - weaponSize.Y);
-                Graphics.DrawSubset(gunSpriteSheet, weaponPos, gunSubset, new Vector2(16, 16));
+                Graphics.DrawSubset(gunSpriteSheet, weaponPos, gunSubset, new Vector2(32, 32));
             }
             else if (weaponImage == 6)//right
             {
                 weaponPos = new Vector2(player.pos.X + player.size.X, player.pos.Y + player.size.Y / 2 - weaponSize.Y / 2);
-                Graphics.DrawSubset(gunSpriteSheet, weaponPos, gunSubset, new Vector2(16, 16));
+                Graphics.DrawSubset(gunSpriteSheet, weaponPos, gunSubset, new Vector2(32, 32));
             }
             else if (weaponImage == 7)//bottom right
             {
                 weaponPos = new Vector2(player.pos.X + player.size.X, player.pos.Y + player.size.Y);
-                Graphics.DrawSubset(gunSpriteSheet, weaponPos, gunSubset, new Vector2(16,16));
+                Graphics.DrawSubset(gunSpriteSheet, weaponPos, gunSubset, new Vector2(32, 32));
             }
             else {/* middle of the charater */}
         }
@@ -162,21 +162,21 @@ namespace MohawkGame2D
             //Darws weapon
             #region DrawPistol
             //assign image ( right now its color )
-            if (weaponImage == 0) gunSubset = new Vector2(32, 16);
+            if (weaponImage == 0) gunSubset = new Vector2(64, 32);
 
-            else if (weaponImage == 1) gunSubset = new Vector2(0, 16);
+            else if (weaponImage == 1) gunSubset = new Vector2(0, 32);
 
-            else if (weaponImage == 2) gunSubset = new Vector2(48, 16);
+            else if (weaponImage == 2) gunSubset = new Vector2(96, 32);
 
-            else if (weaponImage == 3) gunSubset = new Vector2(16, 16);
+            else if (weaponImage == 3) gunSubset = new Vector2(16, 32);
 
-            else if (weaponImage == 4) gunSubset = new Vector2(16, 0);
+            else if (weaponImage == 4) gunSubset = new Vector2(32, 0);
 
-            else if (weaponImage == 5) gunSubset = new Vector2(48, 0);
+            else if (weaponImage == 5) gunSubset = new Vector2(96, 0);
 
             else if (weaponImage == 6) gunSubset = new Vector2(0, 0);
 
-            else if (weaponImage == 7) gunSubset = new Vector2(32, 0);
+            else if (weaponImage == 7) gunSubset = new Vector2(64, 0);
 
             #endregion
 
@@ -191,7 +191,7 @@ namespace MohawkGame2D
 
                 projectiles[projectileIndex] = projectile;
                 projectileIndex++;
-                magCurrent--;   
+                magCurrent--;
             }
             for (int i = 0; i < projectileIndex; i++)
             {
