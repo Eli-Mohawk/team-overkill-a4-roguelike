@@ -27,4 +27,16 @@
     <Folder Include="Sprites\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Sprites\environment-overkill.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Sprites\guns-overkill.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Sprites\player-overkill.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
