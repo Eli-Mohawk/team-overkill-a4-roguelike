@@ -16,7 +16,7 @@ namespace MohawkGame2D
     public class Player
     {
         public Vector2 pos = new Vector2(310, 210);
-        public Vector2 size = new Vector2(16, 16);
+        public Vector2 size = new Vector2(32, 32);
         public float speed = 5;
         public int killCount;
 
@@ -55,8 +55,8 @@ namespace MohawkGame2D
             };
             
             frameTimer += 1;
-            Vector2[] playerFrames = { new Vector2(0, 0), new Vector2(16, 0), new Vector2(32, 0), new Vector2(48, 0), new Vector2(64, 0) };
-            Vector2[] playerFramesBackward = { new Vector2(0, 16), new Vector2(16, 16), new Vector2(32, 16), new Vector2(48, 16), new Vector2(64, 16) };
+            Vector2[] playerFrames = { new Vector2(0, 0), new Vector2(32, 0), new Vector2(64, 0), new Vector2(96, 0), new Vector2(128, 0) };
+            Vector2[] playerFramesBackward = { new Vector2(0, 32), new Vector2(32, 32), new Vector2(64, 32), new Vector2(96, 32), new Vector2(128, 32) };
             
             if (frameTimer >= 10)
             {
@@ -69,14 +69,14 @@ namespace MohawkGame2D
                 }
             }
             if (forward)
-                Graphics.DrawSubset(playerSpriteSheet, pos, playerFrames[frameIndex], new Vector2(16, 16));
+                Graphics.DrawSubset(playerSpriteSheet, pos, playerFrames[frameIndex], new Vector2(32, 32));
             else
-                Graphics.DrawSubset(playerSpriteSheet, pos, playerFramesBackward[frameIndex], new Vector2(16, 16));
+                Graphics.DrawSubset(playerSpriteSheet, pos, playerFramesBackward[frameIndex], new Vector2(32, 32));
         }
 
         void EdgeCollision()
         {
-            float playerLeft = pos.X;aaa
+            float playerLeft = pos.X;
             float playerRight = pos.X + size.X;
             float playerTop = pos.Y;
             float playerBottom = pos.Y + size.Y;

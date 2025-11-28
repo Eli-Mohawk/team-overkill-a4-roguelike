@@ -26,12 +26,12 @@ namespace MohawkGame2D
 
         public Enemy[] enemies =
         {
-            new Enemy(new Vector2(500, 600), new Vector2(16, 16), 2f),
-            new Enemy(new Vector2(200, 200), new Vector2(16, 16), 2.3f),
-            new Enemy(new Vector2(100, 400), new Vector2(16, 16), 2.6f),
-            new Enemy(new Vector2(900, 700), new Vector2(16, 16), 2.9f),
-            new Enemy(new Vector2(1100, 100), new Vector2(16, 16), 3.2f),
-            new Enemy(new Vector2(300, 700), new Vector2(16, 16), 3.5f),
+            new Enemy(new Vector2(500, 600), new Vector2(32, 32), 2f),
+            new Enemy(new Vector2(200, 200), new Vector2(32, 32), 2.3f),
+            new Enemy(new Vector2(100, 400), new Vector2(32, 32), 2.6f),
+            new Enemy(new Vector2(900, 700), new Vector2(32, 32), 2.9f),
+            new Enemy(new Vector2(1100, 100), new Vector2(32, 32), 3.2f),
+            new Enemy(new Vector2(300, 700), new Vector2(32, 32), 3.4f),
             new Enemy(new Vector2(20, 30), new Vector2(16, 16), 3.8f),
             new Enemy(new Vector2(650, 300), new Vector2(16, 16), 4.1f),
             new Enemy(new Vector2(425, 600), new Vector2(16, 16), 4.4f),
@@ -63,11 +63,11 @@ namespace MohawkGame2D
         public void Update()
         {
             Window.ClearBackground(new Color(46, 46, 46));
-            for (int w = 0; w < 1280; w += 16)
+            for (int w = 0; w < 1280; w += 32)
             {
-                for(int h = 0; h < 800; h += 16)
+                for(int h = 0; h < 800; h += 32)
                 {
-                    Graphics.DrawSubset(floorSpriteSheet, new Vector2(w, h), new Vector2(80, 0), new Vector2(16, 16));
+                    Graphics.DrawSubset(floorSpriteSheet, new Vector2(w, h), new Vector2(160, 0), new Vector2(32, 32));
 
                 }
             }
