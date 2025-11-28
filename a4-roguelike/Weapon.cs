@@ -144,10 +144,10 @@ namespace MohawkGame2D
 
             Text.Color = Color.White;
             Text.Size = 15;
-            int textWidth = Raylib.MeasureText($"HP: {magCurrent}/{magMax}", 15);
+            int textWidth = Raylib.MeasureText($"Ammo: {magCurrent}/{magMax}", 15);
             float textX = barPos.X + (maxBarSize.X / 2 - textWidth / 2);
             float textY = barPos.Y + (maxBarSize.Y / 2 - 15 / 2);
-            Text.Draw($"HP: {magCurrent}/{magMax}", new Vector2(textX - 3, textY));
+            Text.Draw($"Ammo: {magCurrent}/{magMax}", new Vector2(textX - 3, textY));
         }
         void reloadLogic()
         {
@@ -168,7 +168,7 @@ namespace MohawkGame2D
 
             else if (weaponImage == 2) gunSubset = new Vector2(96, 32);
 
-            else if (weaponImage == 3) gunSubset = new Vector2(16, 32);
+            else if (weaponImage == 3) gunSubset = new Vector2(32, 32);
 
             else if (weaponImage == 4) gunSubset = new Vector2(32, 0);
 
