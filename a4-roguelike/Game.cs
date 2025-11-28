@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Raylib_cs;
+using System;
 using System.Numerics;
 using System.Reflection.Metadata.Ecma335;
 
@@ -15,6 +16,13 @@ namespace MohawkGame2D
 
         public Screen screen = new Screen();
         public Level level = new Level();
+
+        Texture2D floorSpriteSheet = new Texture2D
+        {
+            FilePath = @"Sprites\environment-overkill.png",
+            FileName = "environment-overkill.png",
+            RaylibTexture2D = Raylib.LoadTexture(@"Sprites\environment-overkill.png")
+        };
 
         public Enemy[] enemies =
         {
@@ -55,6 +63,15 @@ namespace MohawkGame2D
         public void Update()
         {
             Window.ClearBackground(new Color(46, 46, 46));
+            for (int w = 0; w < 1280; w += 16)
+            {
+                for(int h = 0; h < 800; h += 16)
+                {
+                    Graphics.DrawSubset(floorSpriteSheet, new Vector2(w, h), new Vector2(80, 0), new Vector2(16, 16));
+
+                }
+            }
+
             Vector2 mousePos = Input.GetMousePosition();
 
             cheats.Update(screen, player);

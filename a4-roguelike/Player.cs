@@ -1,6 +1,8 @@
 ﻿using Raylib_cs;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Numerics;
@@ -22,6 +24,10 @@ namespace MohawkGame2D
         public float currentHP;
         public bool isDead = false;
 
+        float frameTimer;
+        int frameIndex;
+        bool forward;
+
         Vector2 barPos;
         Vector2 maxBarSize;
         Vector2 currentBarSize;
@@ -41,14 +47,36 @@ namespace MohawkGame2D
 
         void DrawPlayer()
         {
-            Draw.LineSize = 0;
-            Draw.FillColor = Color.Yellow;
-            Draw.Rectangle(pos, size);
+            Texture2D playerSpriteSheet = new Texture2D
+            {
+                FilePath = @"Sprites\player-overkill.png",
+                FileName = "player-overkill.png",
+                RaylibTexture2D = Raylib.LoadTexture(@"Sprites\player-overkill.png")
+            };
+            
+            frameTimer += 1;
+            Vector2[] playerFrames = { new Vector2(0, 0), new Vector2(16, 0), new Vector2(32, 0), new Vector2(48, 0), new Vector2(64, 0) };
+            Vector2[] playerFramesBackward = { new Vector2(0, 16), new Vector2(16, 16), new Vector2(32, 16), new Vector2(48, 16), new Vector2(64, 16) };
+            
+            if (frameTimer >= 10)
+            {
+                if (frameIndex == 4)
+                    frameIndex = 0;
+                else
+                {
+                    frameIndex += 1;
+                    frameTimer = 0;
+                }
+            }
+            if (forward)
+                Graphics.DrawSubset(playerSpriteSheet, pos, playerFrames[frameIndex], new Vector2(16, 16));
+            else
+                Graphics.DrawSubset(playerSpriteSheet, pos, playerFramesBackward[frameIndex], new Vector2(16, 16));
         }
 
         void EdgeCollision()
         {
-            float playerLeft = pos.X;
+            float playerLeft = pos.X;aaa
             float playerRight = pos.X + size.X;
             float playerTop = pos.Y;
             float playerBottom = pos.Y + size.Y;
@@ -67,11 +95,21 @@ namespace MohawkGame2D
             bool isDown = Input.IsKeyboardKeyDown((KeyboardInput)Screen.movementDown);
 
             bool isDodging = Input.IsKeyboardKeyPressed((KeyboardInput)Screen.dodgeKey);
+
             
-            if (isLeft) pos.X -= speed;
-            if (isRight) pos.X += speed;
             if (isUp) pos.Y -= speed;
             if (isDown) pos.Y += speed;
+
+            if (isLeft)
+            {
+                pos.X -= speed;
+                forward = false;
+            }
+            if (isRight)
+            {
+                pos.X += speed;
+                forward = true;
+            }
 
             if (isDodging && isLeft) pos.X -= speed * 5;
             if (isDodging && isRight) pos.X += speed * 5;
