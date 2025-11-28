@@ -19,14 +19,27 @@ namespace MohawkGame2D
         public Enemy[] enemies =
         {
             new Enemy(new Vector2(500, 600), new Vector2(16, 16), 2f),
-            new Enemy(new Vector2(200, 200), new Vector2(16, 16), 2f),
-            new Enemy(new Vector2(100, 400), new Vector2(16, 16), 2f),
+            new Enemy(new Vector2(200, 200), new Vector2(16, 16), 2.3f),
+            new Enemy(new Vector2(100, 400), new Vector2(16, 16), 2.6f),
+            new Enemy(new Vector2(900, 700), new Vector2(16, 16), 2.9f),
+            new Enemy(new Vector2(1100, 100), new Vector2(16, 16), 3.2f),
+            new Enemy(new Vector2(300, 700), new Vector2(16, 16), 3.5f),
+            new Enemy(new Vector2(20, 30), new Vector2(16, 16), 3.8f),
+            new Enemy(new Vector2(650, 300), new Vector2(16, 16), 4.1f),
+            new Enemy(new Vector2(425, 600), new Vector2(16, 16), 4.4f),
+            new Enemy(new Vector2(1250, 720), new Vector2(16, 16), 4.7f),
+            new Enemy(new Vector2(850, 500), new Vector2(16, 16), 5f)
         };
 
         Wall[] walls =
         {
-            new Wall(new Vector2(100, 100), new Vector2(100, 100)),
-            new Wall(new Vector2(300, 300), new Vector2(100, 100))
+            new Wall(new Vector2(100, 100), new Vector2(64, 64)),
+            new Wall(new Vector2(300, 300), new Vector2(64, 64)),
+            new Wall(new Vector2(700, 500), new Vector2(64, 64)),
+            new Wall(new Vector2(250, 600), new Vector2(64, 64)),
+            new Wall(new Vector2(1050, 200), new Vector2(64, 64)),
+            new Wall(new Vector2(900, 700), new Vector2(64, 64)),
+            new Wall(new Vector2(500, 150), new Vector2(64, 64))
         };
 
         public void Setup()
@@ -48,10 +61,10 @@ namespace MohawkGame2D
 
             screen.Update(mousePos);
             if (player.isDead) screen.currentScreen = 5;
-            //if (player.killCount == enemies.Length) UNLOCK DOOR HERE;
+            if (player.killCount == enemies.Length) screen.currentScreen = 4;
             if (screen.currentScreen != 3) return;
 
-            level.Update(player, screen);
+            //level.Update(player, screen);
             
             for (int i = 0; i < walls.Length; i++) walls[i].Update(walls, player, enemies);
 

@@ -57,8 +57,6 @@ namespace MohawkGame2D
 
             angle = Vector2.Normalize(pos - player.pos);
             pos -= angle * speed;
-
-
         }
 
         void Collision(Player player, Enemy[] enemies)
@@ -82,7 +80,7 @@ namespace MohawkGame2D
                 if (meleeAttack >= meleeCooldown)
                 {
                     meleeAttack = 0;
-                    player.currentHP -= 1;
+                    player.currentHP -= 5;
                 }
             }
         }
